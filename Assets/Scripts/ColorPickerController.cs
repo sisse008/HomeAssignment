@@ -19,8 +19,7 @@ public class ColorPickerController : Hoverable, IPointerDownHandler, IChangableL
 
     public Color selectedColor { get; private set; } = Color.white;
     Color hoverColor = Color.white;
-
-   
+  
 
     bool isColorSelected;
 

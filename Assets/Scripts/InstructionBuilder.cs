@@ -3,56 +3,80 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class InstructionBuilder : MonoBehaviour
 {
-    public class Instruction
+
+    [System.Serializable]
+    public enum CommandType
     {
-        List<Command> commands;
-        public static bool inExecution { get; private set; }
-        public static Robot currentRobot { get; private set; }
+        COLOR,
+        ROTATION,
+        POSITION
+    };
 
-        public Instruction(List<Command> commands)
-        {
-            this.commands = commands;
-        }
-        public void ExecuteInstruction(Robot r)
-        {
-            CoroutineRunner.RunCoroutine(Execute(r)); 
-        }
-        IEnumerator Execute(Robot r)
-        {
-            currentRobot = r;
-            inExecution = true;
-            foreach (Command _command in commands)
-                yield return _command.Execute(r);
-            inExecution = false;
-            currentRobot = null;
-        }
-    }
-
-    [SerializeField] TextHelper textHelper;
 
     [SerializeField] ColorPickerController colorPickerController;
     [SerializeField] RotationPickerController rotationPickerController;
     [SerializeField] PositionPickerController positionPickerController;
+    [SerializeField] InstructionUIBar uiBar;
 
+    Instruction newInstruction;
 
-    public void ExecuteInstructionOnRobot(Robot r)
+    private void Start()
     {
-        if (Instruction.inExecution && Instruction.currentRobot == r)
-        {
-            textHelper.ShowWaitText();
-            return;
-        }
-        BuildInstruction().ExecuteInstruction(r);
+        newInstruction = null;
     }
 
-    Instruction BuildInstruction()
+    void CreateNewInstruction()
     {
-        Command colorCommand = new ColorCommand(colorPickerController.selectedColor, colorPickerController.Length);
-        Command rotationCommand = new RotateCommand(rotationPickerController.SelectedQuaternion, rotationPickerController.Length);
-        Command moveCommand = new MoveCommand(positionPickerController.SelectedMovement, positionPickerController.Length);
+        if (newInstruction == null)
+            newInstruction = new Instruction(new List<Command>());
 
-        return new Instruction(new List<Command>() { colorCommand, rotationCommand, moveCommand });
+        uiBar.gameObject.SetActive(true);
+    }
+
+    public void SaveNewInstruction()
+    {
+        GameManager.Instance.AddInstruction(new Instruction(newInstruction.commands));
+        DeleteNewInstruction();
+    }
+
+    public void DeleteNewInstruction()
+    {
+        newInstruction = null;
+
+        uiBar.ResetUI();
+        uiBar.gameObject.SetActive(false);
+    }
+
+    public void AddColorCommand()
+    {
+        CreateNewInstruction();
+
+        Command colorCommand = new ColorCommand(colorPickerController.selectedColor, colorPickerController.Length);
+        newInstruction.AddCommand(colorCommand);
+
+        uiBar.AddCommandUI(CommandType.COLOR);
+    }
+
+    public void AddRotationCommand()
+    {
+        CreateNewInstruction();
+
+        Command rotationCommand = new RotateCommand(rotationPickerController.SelectedQuaternion, rotationPickerController.Length);
+        newInstruction.AddCommand(rotationCommand);
+
+        uiBar.AddCommandUI(CommandType.ROTATION);
+    }
+
+    public void AddPositionCommand()
+    {
+        CreateNewInstruction();
+
+        Command moveCommand = new MoveCommand(positionPickerController.SelectedMovement, positionPickerController.Length);
+        newInstruction.AddCommand(moveCommand);
+
+        uiBar.AddCommandUI(CommandType.POSITION);
     }
 }
