@@ -6200,12 +6200,28 @@ PrefabInstance:
       value: -19.327
       objectReference: {fileID: 0}
     - target: {fileID: 2608094201732297182, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
+      propertyPath: m_text
+      value: Create new instruction
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608094201732297182, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
       propertyPath: m_fontSize
-      value: 40
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608094201732297182, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
+      propertyPath: m_margin.w
+      value: 2.0361423
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608094201732297182, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
+      propertyPath: m_margin.y
+      value: 1.7292767
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608094201732297182, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2608094201732297182, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
       propertyPath: m_fontSizeBase
-      value: 40
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2608094201732297182, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
       propertyPath: m_enableAutoSizing
@@ -6303,6 +6319,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2608094202314066042, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
+      propertyPath: m_Spacing
+      value: 1.29
+      objectReference: {fileID: 0}
     - target: {fileID: 4252078778516897849, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -6313,19 +6333,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252078778516897849, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 163.698
+      value: 149.57
       objectReference: {fileID: 0}
     - target: {fileID: 4252078778516897849, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 38.654
+      value: 38.382
       objectReference: {fileID: 0}
     - target: {fileID: 4252078778516897849, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 217.789
+      value: 210.72485
       objectReference: {fileID: 0}
     - target: {fileID: 4252078778516897849, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -19.327
+      value: -19.190996
       objectReference: {fileID: 0}
     - target: {fileID: 5228550966677602512, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -6356,12 +6376,32 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8319495667242577241, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
+      propertyPath: m_text
+      value: Delete instruction progress
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319495667242577241, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
       propertyPath: m_fontSize
-      value: 40
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319495667242577241, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
+      propertyPath: m_margin.w
+      value: 5.4373703
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319495667242577241, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
+      propertyPath: m_margin.y
+      value: 4.125699
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319495667242577241, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8319495667242577241, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
       propertyPath: m_fontSizeBase
-      value: 40
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319495667242577241, guid: 836f376d529cc6f48a564ce9d2796e3d, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

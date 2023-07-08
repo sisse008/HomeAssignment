@@ -10,7 +10,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] TextHelper textHelper;
     [SerializeField] InstructionSelection instructionSelection;
 
-
+    const int MaxNumOfInstructions = 10;
     List<Instruction> instructions = new List<Instruction>();
 
    
@@ -37,12 +37,16 @@ public class GameManager : Singleton<GameManager>
         ExecuteInstructionOnRobot(instructionSelection.SelectedInstruction, r);
     }
 
-    public void AddInstruction(Instruction instruction)
+    public bool AddInstruction(Instruction instruction)
     {
+        if(instructions.Count >= MaxNumOfInstructions)
+            return false;
+
         instructions.Add(instruction);
         instructionSelection.AddButton(instruction, "instruction" + instructions.Count.ToString());
 
         textHelper.SelectRobotText();
+        return true;
     }
 
     public void DeleteInstruction(Instruction instruction)

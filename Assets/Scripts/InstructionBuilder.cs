@@ -55,9 +55,10 @@ public class InstructionBuilder : MonoBehaviour
         CreateNewInstruction();
 
         Command colorCommand = new ColorCommand(colorPickerController.SelectedColor, colorPickerController.Length);
-        newInstruction.AddCommand(colorCommand);
+        bool success = newInstruction.AddCommand(colorCommand);
 
-        uiBar.AddCommandUI(CommandType.COLOR);
+        if(success)
+            uiBar.AddCommandUI(CommandType.COLOR);
     }
 
     public void AddRotationCommand()
@@ -65,9 +66,10 @@ public class InstructionBuilder : MonoBehaviour
         CreateNewInstruction();
 
         Command rotationCommand = new RotateCommand(rotationPickerController.SelectedQuaternion, rotationPickerController.Length);
-        newInstruction.AddCommand(rotationCommand);
+        bool success = newInstruction.AddCommand(rotationCommand);
 
-        uiBar.AddCommandUI(CommandType.ROTATION);
+        if (success)
+            uiBar.AddCommandUI(CommandType.ROTATION);
     }
 
     public void AddPositionCommand()
@@ -75,8 +77,9 @@ public class InstructionBuilder : MonoBehaviour
         CreateNewInstruction();
 
         Command moveCommand = new MoveCommand(positionPickerController.SelectedMovement, positionPickerController.Length);
-        newInstruction.AddCommand(moveCommand);
+        bool success = newInstruction.AddCommand(moveCommand);
 
-        uiBar.AddCommandUI(CommandType.POSITION);
+        if (success)
+            uiBar.AddCommandUI(CommandType.POSITION);
     }
 }

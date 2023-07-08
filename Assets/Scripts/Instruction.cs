@@ -7,6 +7,8 @@ using System.Linq;
 public class Instruction 
 {
     public List<Command> commands { get; private set; }
+
+    public static int MaxCommands => 20;
     public static bool inExecution { get; private set; }
     public static Robot currentRobot { get; private set; }
 
@@ -15,9 +17,12 @@ public class Instruction
         this.commands = commands;
     }
 
-    public void AddCommand(Command command)
+    public bool AddCommand(Command command)
     {
+        if(commands.Count >= MaxCommands)
+            return false;
         commands.Add(command);
+        return true;
     }
     public void ExecuteInstruction(Robot r)
     {
