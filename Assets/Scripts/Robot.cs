@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.Events;
 public class Robot : MonoBehaviour
 {
 
-    public UnityAction<Robot> OnRobotSelected;
+    public Action<Robot> OnRobotSelected;
     private void OnMouseOver()
     {
         //highlight       
