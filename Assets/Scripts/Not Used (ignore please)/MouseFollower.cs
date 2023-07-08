@@ -17,17 +17,13 @@ public class MouseFollower : MonoBehaviour
         rect = GetComponent<RectTransform>();
         point = GetComponent<Image>();
     }
-    void Start()
-    {
-        
-    }
 
     Vector2 rectPosition;
     void FollowMousePosition()
     {
         if (point.isActiveAndEnabled == false)
             point.enabled = true;
-        rectPosition = hoverableUISpace.HoverRectPosition();
+        rectPosition = hoverableUISpace.HoverPosition2();
 
         rect.localPosition = rectPosition;
     }
@@ -36,8 +32,8 @@ public class MouseFollower : MonoBehaviour
     {
         if (hoverableUISpace.IsHoveredOver)
             FollowMousePosition();
-        else if (point.isActiveAndEnabled)
-            point.enabled = false;
+       // else if (point.isActiveAndEnabled)
+         //   point.enabled = false;
     }
 
 }

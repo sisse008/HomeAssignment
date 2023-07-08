@@ -54,7 +54,7 @@ public class InstructionBuilder : MonoBehaviour
     {
         CreateNewInstruction();
 
-        Command colorCommand = new ColorCommand(colorPickerController.selectedColor, colorPickerController.Length);
+        Command colorCommand = new ColorCommand(colorPickerController.SelectedColor, colorPickerController.Length);
         newInstruction.AddCommand(colorCommand);
 
         uiBar.AddCommandUI(CommandType.COLOR);

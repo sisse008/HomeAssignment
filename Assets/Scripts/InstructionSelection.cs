@@ -25,7 +25,7 @@ public class InstructionSelection : MonoBehaviour
         tMP_Text.text = name;
         instructionButtons[b] = instruction;
         //set new button as selected instruction
-        MyToggle.OnSelected?.Invoke(b.toggle);
+        MyToggle.OnToggleSelected?.Invoke(b.toggle);
         return b.toggle;
     }
 

@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(Image))]
 public class MyToggle : MonoBehaviour, IPointerDownHandler
 {
-    public static Action<MyToggle> OnSelected;
+    public static Action<MyToggle> OnToggleSelected;
 
     [SerializeField] Color selectedColor;
     [SerializeField] Color unSelectedColor;
@@ -24,14 +24,14 @@ public class MyToggle : MonoBehaviour, IPointerDownHandler
     }
     private void OnEnable()
     {
-        OnSelected += OnToggleSelected;
+        OnToggleSelected += CheckIfThisToggleSelected;
     }
     private void OnDisable()
     {
-        OnSelected -= OnToggleSelected;
+        OnToggleSelected -= CheckIfThisToggleSelected;
     }
 
-    void OnToggleSelected(MyToggle toggle)
+    void CheckIfThisToggleSelected(MyToggle toggle)
     {
         if (toggle != this)
             UnSelect();
@@ -41,13 +41,13 @@ public class MyToggle : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData pointerEventData)
     {
-        OnClick?.Invoke();
-        OnSelected?.Invoke(this);
+        OnToggleSelected?.Invoke(this);
     }
 
     void Select()
     { 
         image.color = selectedColor;
+        OnClick?.Invoke();
     }
     void UnSelect()
     {
