@@ -17,12 +17,16 @@ public class GameManager : Singleton<GameManager>
 
     private void OnEnable()
     {
+        instructionSelection.OnInstructionButtonRemoved += DeleteInstruction;
+
         foreach (Robot r in robots)
             r.OnRobotSelected += OnRobotSelected;
     }
 
     private void OnDisable()
     {
+        instructionSelection.OnInstructionButtonRemoved -= DeleteInstruction;
+
         foreach (Robot r in robots)
             r.OnRobotSelected -= OnRobotSelected;
     }
@@ -37,6 +41,12 @@ public class GameManager : Singleton<GameManager>
     {
         instructions.Add(instruction);
         instructionSelection.AddButton(instruction, "instruction" + instructions.Count.ToString());  
+    }
+
+    public void DeleteInstruction(Instruction instruction)
+    {
+        if(instructions.Contains(instruction))
+            instructions.Remove(instruction);
     }
 
     void ExecuteInstructionOnRobot(Instruction instruction, Robot r)

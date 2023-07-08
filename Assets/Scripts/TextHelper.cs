@@ -9,6 +9,7 @@ public class TextHelper : MonoBehaviour
     TMPro.TMP_Text m_TextMeshPro;
     const string selectRobot = "Select Robot To Execute Instruction"; 
     const string wait = "Please Wait For Instruction To Finish";
+    const string createInstruction = "Start Out By Creating a New Instruction";
 
     private void Awake()
     {
