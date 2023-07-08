@@ -19,6 +19,16 @@ public class TextHelper : MonoBehaviour
 
     private void Start()
     {
+        CreateInstructionText();
+    }
+
+    public void CreateInstructionText()
+    {
+        m_TextMeshPro.text = createInstruction;
+    }
+
+    public void SelectRobotText()
+    {
         m_TextMeshPro.text = selectRobot;
     }
 

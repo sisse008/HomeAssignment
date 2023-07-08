@@ -40,13 +40,18 @@ public class GameManager : Singleton<GameManager>
     public void AddInstruction(Instruction instruction)
     {
         instructions.Add(instruction);
-        instructionSelection.AddButton(instruction, "instruction" + instructions.Count.ToString());  
+        instructionSelection.AddButton(instruction, "instruction" + instructions.Count.ToString());
+
+        textHelper.SelectRobotText();
     }
 
     public void DeleteInstruction(Instruction instruction)
     {
         if(instructions.Contains(instruction))
             instructions.Remove(instruction);
+
+        if (instructions.Count == 0)
+            textHelper.CreateInstructionText();
     }
 
     void ExecuteInstructionOnRobot(Instruction instruction, Robot r)
