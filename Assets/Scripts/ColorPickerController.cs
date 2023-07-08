@@ -6,9 +6,12 @@ using UnityEngine.EventSystems;
 
 
 [RequireComponent(typeof(Image))]
-public class ColorPickerController : Hoverable, IPointerDownHandler
+public class ColorPickerController : Hoverable, IPointerDownHandler, IChangableLength
 {
     [SerializeField] Image indicator;
+    [SerializeField] CommandLengthSelector commandLengthSelector;
+
+    public int Length => commandLengthSelector == null ? 2 : commandLengthSelector.SelectedLength;
 
     Image colorImage;
     Texture2D texture;

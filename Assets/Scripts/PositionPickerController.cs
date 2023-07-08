@@ -9,7 +9,7 @@ public enum AxisType
     X,Y,Z
 }
 
-public class PositionPickerController : MonoBehaviour
+public class PositionPickerController : MonoBehaviour, IChangableLength
 {
 
     [SerializeField] Slider s_X;
@@ -20,6 +20,9 @@ public class PositionPickerController : MonoBehaviour
     Vector3 newPositionDelta;
     public Vector3 SelectedMovement => newPositionDelta;
     public const float range = 10;
+
+    [SerializeField] CommandLengthSelector commandLengthSelector;
+    public int Length => commandLengthSelector == null ? 2 : commandLengthSelector.SelectedLength;
 
     private void OnEnable()
     {

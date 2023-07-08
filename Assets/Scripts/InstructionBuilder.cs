@@ -8,6 +8,8 @@ public class InstructionBuilder : MonoBehaviour
     public class Instruction
     {
         List<Command> commands;
+        public static bool inExecution { get; private set; }
+        public static Robot currentRobot { get; private set; }
 
         public Instruction(List<Command> commands)
         {
@@ -19,13 +21,16 @@ public class InstructionBuilder : MonoBehaviour
         }
         IEnumerator Execute(Robot r)
         {
-            foreach(Command _command in commands)
+            currentRobot = r;
+            inExecution = true;
+            foreach (Command _command in commands)
                 yield return _command.Execute(r);
+            inExecution = false;
+            currentRobot = null;
         }
     }
 
-    [SerializeField] TMPro.TMP_Text textHelper;
-    [SerializeField] float commandExecutionTime = 2f;
+    [SerializeField] TextHelper textHelper;
 
     [SerializeField] ColorPickerController colorPickerController;
     [SerializeField] RotationPickerController rotationPickerController;
@@ -33,15 +38,20 @@ public class InstructionBuilder : MonoBehaviour
 
 
     public void ExecuteInstructionOnRobot(Robot r)
-    { 
+    {
+        if (Instruction.inExecution && Instruction.currentRobot == r)
+        {
+            textHelper.ShowWaitText();
+            return;
+        }
         BuildInstruction().ExecuteInstruction(r);
     }
 
     Instruction BuildInstruction()
     {
-        Command colorCommand = new ColorCommand(colorPickerController.selectedColor, commandExecutionTime);
-        Command rotationCommand = new RotateCommand(rotationPickerController.SelectedQuaternion, commandExecutionTime);
-        Command moveCommand = new MoveCommand(positionPickerController.SelectedMovement, commandExecutionTime);
+        Command colorCommand = new ColorCommand(colorPickerController.selectedColor, colorPickerController.Length);
+        Command rotationCommand = new RotateCommand(rotationPickerController.SelectedQuaternion, rotationPickerController.Length);
+        Command moveCommand = new MoveCommand(positionPickerController.SelectedMovement, positionPickerController.Length);
 
         return new Instruction(new List<Command>() { colorCommand, rotationCommand, moveCommand });
     }
