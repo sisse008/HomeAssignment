@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class MoveCommand : Command
 {
-    Vector3 delta;
+    [SerializeField]Vector3 delta;
 
     void Init (Vector3 delta) 
     {
         this.delta = delta;
+    }
+
+    public override Command Copy()
+    {
+         return New(delta, actionTime);
     }
 
     public static MoveCommand New(Vector3 delta, float actionTime)
@@ -16,6 +22,7 @@ public class MoveCommand : Command
         MoveCommand instance = ScriptableObject.CreateInstance<MoveCommand>();
         instance.Init(delta);
         instance.actionTime = actionTime;
+        instance.type = CommandType.MOVE;
         return instance;
     }
 

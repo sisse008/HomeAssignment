@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class InstructionSelection : MonoBehaviour
 {
@@ -10,8 +11,6 @@ public class InstructionSelection : MonoBehaviour
     [SerializeField] InstructionButton t_instruction;
 
     public Action<Instruction> OnInstructionButtonRemoved;
-
-    Dictionary<InstructionButton, Instruction> instructionButtons = new Dictionary<InstructionButton, Instruction>();
 
     Instruction selectedInstruction;
 
@@ -31,17 +30,17 @@ public class InstructionSelection : MonoBehaviour
         selectedInstruction.DestroyInstruction();
     }
 
-    public MyToggle AddButton(Instruction instruction, string name)
+    public InstructionButton AddButton(Instruction instruction, string name)
     {
         InstructionButton b = Instantiate(t_instruction, transform);
         b.gameObject.SetActive(true);
         b.toggle.OnClick.AddListener(() => OnInstructionSelected(instruction));
         TMPro.TMP_Text tMP_Text = b.toggle.GetComponentInChildren<TMPro.TMP_Text>();
         tMP_Text.text = name;
-        instructionButtons[b] = instruction;
+        b.instruction = instruction;
         //set new button as selected instruction
         MyToggle.OnToggleSelected?.Invoke(b.toggle);
-        return b.toggle;
+        return b;
     }
 
     void OnInstructionSelected(Instruction instruction)
@@ -50,11 +49,7 @@ public class InstructionSelection : MonoBehaviour
     }
     public void RemoveInstructionButton(InstructionButton button)
     {
-        if (instructionButtons.ContainsKey(button))
-        {
-            OnInstructionButtonRemoved.Invoke(instructionButtons[button]);
-            instructionButtons.Remove(button);
-            Destroy(button.gameObject);
-        }
+        OnInstructionButtonRemoved.Invoke(button.instruction);
+        Destroy(button.gameObject);
     }
 }

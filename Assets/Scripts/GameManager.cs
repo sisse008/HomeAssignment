@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] List<Robot> robots;
@@ -77,5 +78,4 @@ public class GameManager : Singleton<GameManager>
         }
         instruction.ExecuteInstruction(r);
     }
-
 }

@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[System.Serializable]
 public class RotateCommand : Command
 {
-    Quaternion newRotation;
+    [SerializeField] Quaternion newRotation;
 
     void Init(Quaternion newRotation) 
     {
         this.newRotation = newRotation;
+    }
+
+    public override Command Copy()
+    {
+        return New(newRotation, actionTime);
     }
 
     public static RotateCommand New(Quaternion newRotation, float actionTime)
@@ -17,6 +22,7 @@ public class RotateCommand : Command
         RotateCommand instance = ScriptableObject.CreateInstance<RotateCommand>();
         instance.Init(newRotation);
         instance.actionTime = actionTime;
+        instance.type = CommandType.ROTATE;
         return instance;
     }
 

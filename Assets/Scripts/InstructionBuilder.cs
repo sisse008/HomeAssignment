@@ -7,14 +7,6 @@ using UnityEngine.UI;
 public class InstructionBuilder : MonoBehaviour
 {
 
-    [System.Serializable]
-    public enum CommandType
-    {
-        COLOR,
-        ROTATION,
-        POSITION
-    };
-
 
     [SerializeField] ColorPickerController colorPickerController;
     [SerializeField] RotationPickerController rotationPickerController;
@@ -34,7 +26,9 @@ public class InstructionBuilder : MonoBehaviour
 
     public void SaveNewInstruction()
     {
-        GameManager.Instance.AddInstruction(Instruction.New(newInstruction.commands));
+        Instruction _newInstruction = newInstruction.Copy();
+        GameManager.Instance.AddInstruction(_newInstruction);
+      
         DeleteNewInstruction();
     }
 
@@ -65,7 +59,7 @@ public class InstructionBuilder : MonoBehaviour
         bool success = newInstruction.AddCommand(rotationCommand);
 
         if (success)
-            uiBar.AddCommandUI(CommandType.ROTATION);
+            uiBar.AddCommandUI(CommandType.ROTATE);
     }
 
     public void AddPositionCommand()
@@ -76,6 +70,6 @@ public class InstructionBuilder : MonoBehaviour
         bool success = newInstruction.AddCommand(moveCommand);
 
         if (success)
-            uiBar.AddCommandUI(CommandType.POSITION);
+            uiBar.AddCommandUI(CommandType.MOVE);
     }
 }

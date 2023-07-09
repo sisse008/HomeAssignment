@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ColorCommand : Command
 {
-    Color newColor;
+    [SerializeField]Color newColor;
 
     void Init(Color newColor)
     { 
         this.newColor = newColor;
+    }
+
+    public override Command Copy()
+    {
+        return New(newColor, actionTime);
     }
 
     public static ColorCommand New(Color newColor, float actionTime)
@@ -16,6 +22,7 @@ public class ColorCommand : Command
         ColorCommand instance = ScriptableObject.CreateInstance<ColorCommand>();
         instance.Init(newColor);
         instance.actionTime = actionTime;
+        instance.type = CommandType.COLOR;
         return instance;
     }
 

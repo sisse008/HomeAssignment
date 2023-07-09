@@ -20,17 +20,17 @@ public class InstructionUIBar : MonoBehaviour
         }
         icons.Clear();
     }
-    public void AddCommandUI(InstructionBuilder.CommandType type)
+    public void AddCommandUI(CommandType type)
     {
-        if (type == InstructionBuilder.CommandType.COLOR)
+        if (type == CommandType.COLOR)
         {
             icons.Add(Instantiate(colorIcon, transform));
         }
-        if (type == InstructionBuilder.CommandType.POSITION)
+        if (type == CommandType.MOVE)
         {
             icons.Add(Instantiate(positionIcon, transform));
         }
-        if (type == InstructionBuilder.CommandType.ROTATION)
+        if (type == CommandType.ROTATE)
         {
             icons.Add(Instantiate(rotationIcon, transform));
         }
