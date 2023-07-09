@@ -31,7 +31,15 @@ public class GameManager : Singleton<GameManager>
             r.OnRobotSelected -= OnRobotSelected;
     }
 
-    
+
+    private void OnDestroy()
+    {
+        foreach (Instruction _instruction in instructions)
+        {
+            _instruction.DestroyInstruction();
+        }
+    }
+
     void OnRobotSelected(Robot r)
     {
         ExecuteInstructionOnRobot(instructionSelection.SelectedInstruction, r);
@@ -53,6 +61,8 @@ public class GameManager : Singleton<GameManager>
     {
         if(instructions.Contains(instruction))
             instructions.Remove(instruction);
+
+        instruction.DestroyInstruction();
 
         if (instructions.Count == 0)
             textHelper.CreateInstructionText();

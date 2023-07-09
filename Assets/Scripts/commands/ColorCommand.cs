@@ -6,10 +6,19 @@ public class ColorCommand : Command
 {
     Color newColor;
 
-    public ColorCommand(Color newColor, float actionTime): base(actionTime)
+    void Init(Color newColor)
     { 
         this.newColor = newColor;
     }
+
+    public static ColorCommand New(Color newColor, float actionTime)
+    {
+        ColorCommand instance = ScriptableObject.CreateInstance<ColorCommand>();
+        instance.Init(newColor);
+        instance.actionTime = actionTime;
+        return instance;
+    }
+
     public override IEnumerator Execute(Robot r)
     {
         float currentFade = 0;

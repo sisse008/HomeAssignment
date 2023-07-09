@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using System.Linq;
 
-public class Instruction 
+public class Instruction : ScriptableObject
 {
     public List<Command> commands { get; private set; }
 
@@ -12,9 +12,24 @@ public class Instruction
     public static bool inExecution { get; private set; }
     public static Robot currentRobot { get; private set; }
 
-    public Instruction(List<Command> commands)
+    void Init(List<Command> commands)
     {
         this.commands = commands;
+    }
+
+    public static Instruction New(List<Command> commands)
+    {
+        Instruction instance = ScriptableObject.CreateInstance<Instruction>();
+        instance.Init(commands);
+        return instance;
+    }
+
+    public void DestroyInstruction()
+    {
+        foreach (Command _command in commands)
+            _command.DestroyCommand();
+
+        Destroy(this);
     }
 
     public bool AddCommand(Command command)

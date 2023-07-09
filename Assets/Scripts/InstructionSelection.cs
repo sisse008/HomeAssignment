@@ -11,10 +11,25 @@ public class InstructionSelection : MonoBehaviour
 
     public Action<Instruction> OnInstructionButtonRemoved;
 
-    Instruction selectedInstruction;
-    public Instruction SelectedInstruction => selectedInstruction==null? new Instruction(new List<Command>()) : selectedInstruction;
-
     Dictionary<InstructionButton, Instruction> instructionButtons = new Dictionary<InstructionButton, Instruction>();
+
+    Instruction selectedInstruction;
+
+    public Instruction SelectedInstruction
+    {
+        get 
+        {
+            if(selectedInstruction == null)
+                selectedInstruction = Instruction.New(new List<Command>());
+
+            return selectedInstruction;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        selectedInstruction.DestroyInstruction();
+    }
 
     public MyToggle AddButton(Instruction instruction, string name)
     {

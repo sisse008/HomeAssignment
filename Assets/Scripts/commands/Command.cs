@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Command 
+public abstract class Command : ScriptableObject
 {
     protected float actionTime;
 
-    public Command(float actionTime)
+    public void DestroyCommand()
     {
-        this.actionTime = actionTime;
+        Destroy(this);
     }
     public virtual IEnumerator Execute(Robot r)
     {

@@ -7,9 +7,17 @@ public class RotateCommand : Command
 {
     Quaternion newRotation;
 
-    public RotateCommand(Quaternion newRotation, float actionTime) :base(actionTime)
+    void Init(Quaternion newRotation) 
     {
         this.newRotation = newRotation;
+    }
+
+    public static RotateCommand New(Quaternion newRotation, float actionTime)
+    {
+        RotateCommand instance = ScriptableObject.CreateInstance<RotateCommand>();
+        instance.Init(newRotation);
+        instance.actionTime = actionTime;
+        return instance;
     }
 
     public override IEnumerator Execute(Robot r)

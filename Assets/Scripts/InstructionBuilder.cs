@@ -21,30 +21,26 @@ public class InstructionBuilder : MonoBehaviour
     [SerializeField] PositionPickerController positionPickerController;
     [SerializeField] InstructionUIBar uiBar;
 
-    Instruction newInstruction;
+    Instruction newInstruction; 
 
-    private void Start()
-    {
-        newInstruction = null;
-    }
 
     void CreateNewInstruction()
     {
         if (newInstruction == null)
-            newInstruction = new Instruction(new List<Command>());
+            newInstruction = Instruction.New(new List<Command>());
 
         uiBar.gameObject.SetActive(true);
     }
 
     public void SaveNewInstruction()
     {
-        GameManager.Instance.AddInstruction(new Instruction(newInstruction.commands));
+        GameManager.Instance.AddInstruction(Instruction.New(newInstruction.commands));
         DeleteNewInstruction();
     }
 
     public void DeleteNewInstruction()
     {
-        newInstruction = null;
+        newInstruction.DestroyInstruction();
 
         uiBar.ResetUI();
         uiBar.gameObject.SetActive(false);
@@ -54,7 +50,7 @@ public class InstructionBuilder : MonoBehaviour
     {
         CreateNewInstruction();
 
-        Command colorCommand = new ColorCommand(colorPickerController.SelectedColor, colorPickerController.Length);
+        Command colorCommand = ColorCommand.New(colorPickerController.SelectedColor, colorPickerController.Length);
         bool success = newInstruction.AddCommand(colorCommand);
 
         if(success)
@@ -65,7 +61,7 @@ public class InstructionBuilder : MonoBehaviour
     {
         CreateNewInstruction();
 
-        Command rotationCommand = new RotateCommand(rotationPickerController.SelectedQuaternion, rotationPickerController.Length);
+        Command rotationCommand = RotateCommand.New(rotationPickerController.SelectedQuaternion, rotationPickerController.Length);
         bool success = newInstruction.AddCommand(rotationCommand);
 
         if (success)
@@ -76,7 +72,7 @@ public class InstructionBuilder : MonoBehaviour
     {
         CreateNewInstruction();
 
-        Command moveCommand = new MoveCommand(positionPickerController.SelectedMovement, positionPickerController.Length);
+        Command moveCommand = MoveCommand.New(positionPickerController.SelectedMovement, positionPickerController.Length);
         bool success = newInstruction.AddCommand(moveCommand);
 
         if (success)

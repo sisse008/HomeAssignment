@@ -6,9 +6,17 @@ public class MoveCommand : Command
 {
     Vector3 delta;
 
-    public MoveCommand(Vector3 delta, float actionTime) :base(actionTime)
+    void Init (Vector3 delta) 
     {
         this.delta = delta;
+    }
+
+    public static MoveCommand New(Vector3 delta, float actionTime)
+    {
+        MoveCommand instance = ScriptableObject.CreateInstance<MoveCommand>();
+        instance.Init(delta);
+        instance.actionTime = actionTime;
+        return instance;
     }
 
     Vector3 destination;
