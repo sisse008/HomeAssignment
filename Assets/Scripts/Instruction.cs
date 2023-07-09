@@ -14,14 +14,14 @@ public class Instruction : ScriptableObject
     public static bool inExecution { get; private set; }
     public static Robot currentRobot { get; private set; }
 
-    public bool permitDestroy = true;
+    bool permitDestroy = true;
 
     public void OnSavedAsAsset()
     {
         permitDestroy = false;
     }
 
-    void Init(List<Command> commands)
+    public void Init(List<Command> commands)
     {
         this.commands = commands;
     }

@@ -30,16 +30,13 @@ public class InstructionSelection : MonoBehaviour
         selectedInstruction.DestroyInstruction();
     }
 
-    public InstructionButton AddButton(Instruction instruction, string name)
+    public InstructionButton AddButton(Instruction instruction, string name, bool allowSaveAndDeleteButtons)
     {
         InstructionButton b = Instantiate(t_instruction, transform);
         b.gameObject.SetActive(true);
-        b.toggle.OnClick.AddListener(() => OnInstructionSelected(instruction));
-        TMPro.TMP_Text tMP_Text = b.toggle.GetComponentInChildren<TMPro.TMP_Text>();
-        tMP_Text.text = name;
-        b.instruction = instruction;
-        //set new button as selected instruction
-        MyToggle.OnToggleSelected?.Invoke(b.toggle);
+
+        b.Init(()=> OnInstructionSelected(instruction), name, instruction, !allowSaveAndDeleteButtons);
+       
         return b;
     }
 

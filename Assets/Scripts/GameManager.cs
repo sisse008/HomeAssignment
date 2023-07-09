@@ -46,13 +46,13 @@ public class GameManager : Singleton<GameManager>
         ExecuteInstructionOnRobot(instructionSelection.SelectedInstruction, r);
     }
 
-    public bool AddInstruction(Instruction instruction)
+    public bool AddInstruction(Instruction instruction, bool fromAsset = false)
     {
         if(instructions.Count >= MaxNumOfInstructions)
             return false;
 
         instructions.Add(instruction);
-        instructionSelection.AddButton(instruction, "instruction" + instructions.Count.ToString());
+        instructionSelection.AddButton(instruction, "instruction" + instructions.Count.ToString(), !fromAsset);
 
         textHelper.SelectRobotText();
         return true;

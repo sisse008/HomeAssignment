@@ -16,7 +16,7 @@ public abstract class Command : ScriptableObject
     [SerializeField]protected float actionTime;
     public CommandType type { get; protected set; }
 
-    public bool permitDestroy = true;
+    bool permitDestroy = true;
 
 
     public void OnSavedAsAsset()

@@ -22,7 +22,9 @@ public class InstructionAssetSaver : MonoBehaviour
         if (Directory.Exists(instructionDataPath))
         {
             System.Random random = new System.Random();
-            Directory.CreateDirectory(instructionDataPath+random.ToString());
+            instructionDataPath += random.Next().ToString();
+
+            Directory.CreateDirectory(instructionDataPath);
         }
         else
             Directory.CreateDirectory(instructionDataPath);
