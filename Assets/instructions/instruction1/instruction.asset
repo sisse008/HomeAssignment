@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 973196595e86c874492ff75e97961588, type: 3}
-  m_Name: Color Command 1
+  m_Script: {fileID: 11500000, guid: 163dafc3caa9f34488f72f5efb7075e3, type: 3}
+  m_Name: instruction
   m_EditorClassIdentifier: 
-  actionTime: 2
-  newColor: {r: 0.8784314, g: 0.3333333, b: 0.53773963, a: 1}
+  commands:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

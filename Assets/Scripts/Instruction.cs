@@ -14,12 +14,18 @@ public class Instruction : ScriptableObject
     public static bool inExecution { get; private set; }
     public static Robot currentRobot { get; private set; }
 
-    bool permitDestroy = true;
+    public Action OnSavedAsAsset;
 
-    public void OnSavedAsAsset()
+    private void OnEnable()
     {
-        permitDestroy = false;
+        OnSavedAsAsset += () => isAsset = true;
     }
+    private void OnDisable()
+    {
+        OnSavedAsAsset -= () => isAsset = true;
+    }
+
+    public bool isAsset { get; private set; } = false;
 
     public void Init(List<Command> commands)
     {
@@ -45,7 +51,7 @@ public class Instruction : ScriptableObject
 
     public void DestroyInstruction()
     {
-        if (permitDestroy == false)
+        if (isAsset)
             return;
 
         foreach (Command _command in commands)

@@ -9,6 +9,12 @@ public class InstructionAssetSaver : MonoBehaviour
     [SerializeField] string path;
     public void SaveInstructionAsAsset(InstructionButton instructionButton)
     {
+        if (instructionButton.instruction.isAsset)
+        {
+            Debug.LogWarning("This Instruction and it's commands are already saved as assets. Cannot resave. retreating.");
+            return;
+        }
+
         if (!Directory.Exists(path))
         {
             Directory.CreateDirectory(path);
@@ -33,7 +39,7 @@ public class InstructionAssetSaver : MonoBehaviour
         string instructionAssetPath = Path.Combine(instructionDataPath, "instruction" + ".asset");
         AssetDatabase.CreateAsset(instructionButton.instruction, instructionAssetPath);
 
-        instructionButton.instruction.OnSavedAsAsset();
+        instructionButton.instruction.OnSavedAsAsset?.Invoke();
 
         int num = 1;
         foreach (Command _command in instructionButton.instruction.Commands)
@@ -43,7 +49,7 @@ public class InstructionAssetSaver : MonoBehaviour
             string commandAssetPath = Path.Combine(instructionDataPath, type + " Command " + (num++).ToString() + ".asset");
             AssetDatabase.CreateAsset(_command, commandAssetPath);
 
-            _command.OnSavedAsAsset();
+            _command.OnSavedAsAsset?.Invoke();
         }
 
         AssetDatabase.Refresh();

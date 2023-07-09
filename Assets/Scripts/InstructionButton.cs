@@ -16,14 +16,25 @@ public class InstructionButton : MonoBehaviour
 
     public void Init(Action OnClick, string name, Instruction instruction, bool removeSaveAssetButtons)
     {
+        instruction.OnSavedAsAsset += RemoveSaveAndDeleteButtons;
         toggle.OnClick.AddListener(() => OnClick());
         text.text = name;
         this.instruction = instruction;
         MyToggle.OnToggleSelected?.Invoke(toggle); //set new button as selected instruction
         if (removeSaveAssetButtons)
-        {
-            b_deleteAsset.gameObject.SetActive(false);
-            b_saveAsAsset.gameObject.SetActive(false);
-        }  
+            RemoveSaveAndDeleteButtons();
     }
+
+    private void OnDisable()
+    {
+        instruction.OnSavedAsAsset -= RemoveSaveAndDeleteButtons;
+    }
+
+    void RemoveSaveAndDeleteButtons()
+    {
+        b_deleteAsset.gameObject.SetActive(false);
+        b_saveAsAsset.gameObject.SetActive(false);
+    }
+
+
 }

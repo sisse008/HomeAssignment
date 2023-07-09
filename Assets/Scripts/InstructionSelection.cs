@@ -27,7 +27,8 @@ public class InstructionSelection : MonoBehaviour
 
     private void OnDestroy()
     {
-        selectedInstruction.DestroyInstruction();
+        if(selectedInstruction)
+            selectedInstruction.DestroyInstruction();
     }
 
     public InstructionButton AddButton(Instruction instruction, string name, bool allowSaveAndDeleteButtons)

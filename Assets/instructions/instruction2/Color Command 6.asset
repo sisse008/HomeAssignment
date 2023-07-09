@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40b9a76fbfa39224e8f3b3454d55bd60, type: 3}
-  m_Name: Movement Command 2
+  m_Script: {fileID: 11500000, guid: 973196595e86c874492ff75e97961588, type: 3}
+  m_Name: Color Command 6
   m_EditorClassIdentifier: 
   actionTime: 2
-  delta: {x: 0, y: 0, z: 0}
+  newColor: {r: 0.8784314, g: 0.3333333, b: 0.53773963, a: 1}

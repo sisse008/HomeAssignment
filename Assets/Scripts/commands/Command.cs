@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,13 +17,19 @@ public abstract class Command : ScriptableObject
     [SerializeField]protected float actionTime;
     public CommandType type { get; protected set; }
 
-    bool permitDestroy = true;
+    public Action OnSavedAsAsset;
 
-
-    public void OnSavedAsAsset()
+    private void OnEnable()
     {
-        permitDestroy = false;
+        OnSavedAsAsset += () => isAsset = true;
     }
+    private void OnDisable()
+    {
+        OnSavedAsAsset -= () => isAsset = true;
+    }
+
+    public bool isAsset { get; protected set; } = false;
+
 
     public virtual Command Copy()
     {
@@ -31,7 +38,7 @@ public abstract class Command : ScriptableObject
 
     public void DestroyCommand()
     {
-        if(permitDestroy)
+        if(!isAsset)
             Destroy(this);
     }
     public virtual IEnumerator Execute(Robot r)
