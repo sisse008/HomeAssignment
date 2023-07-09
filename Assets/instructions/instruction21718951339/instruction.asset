@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40b9a76fbfa39224e8f3b3454d55bd60, type: 3}
-  m_Name: Movement Command 7
+  m_Script: {fileID: 11500000, guid: 163dafc3caa9f34488f72f5efb7075e3, type: 3}
+  m_Name: instruction
   m_EditorClassIdentifier: 
-  actionTime: 2
-  delta: {x: 0, y: 0, z: 0}
+  commands:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

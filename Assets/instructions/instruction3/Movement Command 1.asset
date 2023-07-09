@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffc2b2aa5e9c70b46b2f9fd5743715d6, type: 3}
-  m_Name: Rotate Command 1
+  m_Script: {fileID: 11500000, guid: 40b9a76fbfa39224e8f3b3454d55bd60, type: 3}
+  m_Name: Movement Command 1
   m_EditorClassIdentifier: 
   actionTime: 2
-  newRotation: {x: 0, y: 0, z: 0, w: 1}
+  delta: {x: 7.1974287, y: 0, z: 0}

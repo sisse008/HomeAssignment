@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Rotate Command 2
   m_EditorClassIdentifier: 
   actionTime: 2
-  newRotation: {x: 0, y: 0, z: 0, w: 1}
+  newRotation: {x: 0.21794766, y: 0.2001442, z: 0.026668731, w: 0.9548455}
