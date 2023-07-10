@@ -28,7 +28,8 @@ public abstract class Command : ScriptableObject
         OnSavedAsAsset -= () => isAsset = true;
     }
 
-    public bool isAsset { get; protected set; } = false;
+
+    [HideInInspector]public bool isAsset = false;
 
 
     public virtual Command Copy()

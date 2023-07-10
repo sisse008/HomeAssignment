@@ -27,15 +27,17 @@ public class Instruction : ScriptableObject
         OnSavedAsAsset -= () => isAsset = true;
     }
 
-    public bool isAsset { get; private set; } = false;
+    [SerializeField][HideInInspector]bool isAsset; 
+    public bool IsAsset => isAsset;
 
     public void Init(List<Command> commands)
     {
         this.commands = commands;
     }
 
-    public bool FixUnityRefrencingBug()
+    public bool FixUnityRefrencingBug() //unity has a bug where it does not serealize and desealize correctly fields in a SO that where set at runtime (and not manually)
     {
+        isAsset = true;
         if (commandAssetsGuids.Count != commands.Count)
             return false;
         for (int i = 0; i < commands.Count; i++)
@@ -46,6 +48,7 @@ public class Instruction : ScriptableObject
             if (string.IsNullOrEmpty(assetPath))
                 return false;
             commands[i] = AssetDatabase.LoadAssetAtPath<Command>(assetPath);
+            commands[i].isAsset = true;
         }
         return true;
     }

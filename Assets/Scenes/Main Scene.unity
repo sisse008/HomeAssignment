@@ -1761,8 +1761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ee7b6837435834dbdad39eab7b3d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instructionAssets:
-  - {fileID: 11400000, guid: e243445386778b54e9f10c5c9db64f15, type: 2}
+  instructionAssets: []
 --- !u!114 &651845012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6947,7 +6946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4693185554620189616, guid: 7a6f30a323d596f4599bd2acdb1048c8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4693185554620189616, guid: 7a6f30a323d596f4599bd2acdb1048c8, type: 3}
       propertyPath: m_AnchorMin.x
@@ -6955,7 +6954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4693185554620189616, guid: 7a6f30a323d596f4599bd2acdb1048c8, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4693185554620189616, guid: 7a6f30a323d596f4599bd2acdb1048c8, type: 3}
       propertyPath: m_SizeDelta.x
@@ -6995,11 +6994,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4693185554620189616, guid: 7a6f30a323d596f4599bd2acdb1048c8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 153.5
       objectReference: {fileID: 0}
     - target: {fileID: 4693185554620189616, guid: 7a6f30a323d596f4599bd2acdb1048c8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -23.862
       objectReference: {fileID: 0}
     - target: {fileID: 4693185554620189616, guid: 7a6f30a323d596f4599bd2acdb1048c8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7019,7 +7018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4693185554620189617, guid: 7a6f30a323d596f4599bd2acdb1048c8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4693185554620189619, guid: 7a6f30a323d596f4599bd2acdb1048c8, type: 3}
       propertyPath: b_deleteAsset

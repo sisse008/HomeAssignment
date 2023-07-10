@@ -8,8 +8,12 @@ public class InstructionAssetLoader : MonoBehaviour
 
     private void Awake()
     {
-        foreach(Instruction instruction in instructionAssets)
-            instruction.FixUnityRefrencingBug();
+        foreach (Instruction _instruction in instructionAssets)
+            if (_instruction)
+                _instruction.FixUnityRefrencingBug();
+               
+            
+              
     }
 
     private void Start()

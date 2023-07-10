@@ -27,7 +27,8 @@ public class InstructionButton : MonoBehaviour
 
     private void OnDisable()
     {
-        instruction.OnSavedAsAsset -= RemoveSaveAndDeleteButtons;
+        if(instruction)
+            instruction.OnSavedAsAsset -= RemoveSaveAndDeleteButtons;
     }
 
     void RemoveSaveAndDeleteButtons()
