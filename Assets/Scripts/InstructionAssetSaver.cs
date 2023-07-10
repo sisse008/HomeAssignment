@@ -41,6 +41,8 @@ public class InstructionAssetSaver : MonoBehaviour
 
         instructionButton.instruction.OnSavedAsAsset?.Invoke();
 
+        instructionButton.instruction.commandAssetsGuids = new List<string>();
+
         int num = 1;
         foreach (Command _command in instructionButton.instruction.Commands)
         {
@@ -50,7 +52,10 @@ public class InstructionAssetSaver : MonoBehaviour
             AssetDatabase.CreateAsset(_command, commandAssetPath);
 
             _command.OnSavedAsAsset?.Invoke();
+
+            instructionButton.instruction.commandAssetsGuids.Add(AssetDatabase.AssetPathToGUID(commandAssetPath));
         }
+
 
         AssetDatabase.Refresh();
     }

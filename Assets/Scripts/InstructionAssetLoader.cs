@@ -6,7 +6,11 @@ public class InstructionAssetLoader : MonoBehaviour
 {
     [SerializeField] List<Instruction> instructionAssets;
 
-
+    private void Awake()
+    {
+        foreach(Instruction instruction in instructionAssets)
+            instruction.FixUnityRefrencingBug();
+    }
 
     private void Start()
     {

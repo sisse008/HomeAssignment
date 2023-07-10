@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using UnityEditor;
 
 public class Instruction : ScriptableObject
 {
     [SerializeField] List<Command> commands;
+    public List<string> commandAssetsGuids;
 
     public List<Command> Commands => commands.ToList();
 
@@ -30,6 +32,22 @@ public class Instruction : ScriptableObject
     public void Init(List<Command> commands)
     {
         this.commands = commands;
+    }
+
+    public bool FixUnityRefrencingBug()
+    {
+        if (commandAssetsGuids.Count != commands.Count)
+            return false;
+        for (int i = 0; i < commands.Count; i++)
+        {
+            if (commands[i] != null)
+                continue;
+            string assetPath = AssetDatabase.GUIDToAssetPath(commandAssetsGuids[i]);
+            if (string.IsNullOrEmpty(assetPath))
+                return false;
+            commands[i] = AssetDatabase.LoadAssetAtPath<Command>(assetPath);
+        }
+        return true;
     }
 
     public static Instruction New(List<Command> commands)
