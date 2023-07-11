@@ -30,9 +30,16 @@ public class ColorSlider : MonoBehaviour
 
     public void ResetSlider()
     {
+       StartCoroutine(IResetSlider());
+    }
+
+    IEnumerator IResetSlider()
+    {
+        slider.value = 0;
+        yield return null; //because UpdateHandleColor will set handle to red
         selectedColor = Color.white;
         sliderImage.color = selectedColor;
-        slider.value = 0;
+       
     }
 
     void UpdateHandleColor(float val)

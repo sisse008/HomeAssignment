@@ -208,7 +208,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1603423322}
         m_TargetAssemblyTypeName: ColorPickerController, Assembly-CSharp
-        m_MethodName: Reset
+        m_MethodName: ResetColorPicker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

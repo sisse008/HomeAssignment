@@ -16,7 +16,7 @@ public class ColorPickerController : MonoBehaviour
     public Color SelectedColor => slider.selectedColor;
   
 
-    public void Reset()
+    public void ResetColorPicker()
     {
         slider.ResetSlider();
     }
