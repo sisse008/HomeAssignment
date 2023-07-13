@@ -9,6 +9,8 @@ public class InstructionAssetSaver : MonoBehaviour
     [SerializeField] string path;
     public void SaveInstructionAsAsset(InstructionButton instructionButton)
     {
+
+#if UNITY_EDITOR
         if (instructionButton.instruction.IsAsset)
         {
             Debug.LogWarning("This Instruction and it's commands are already saved as assets. Cannot resave. retreating.");
@@ -58,5 +60,6 @@ public class InstructionAssetSaver : MonoBehaviour
 
 
         AssetDatabase.Refresh();
+#endif
     }
 }

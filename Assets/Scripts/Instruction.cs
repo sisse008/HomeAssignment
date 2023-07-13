@@ -37,6 +37,7 @@ public class Instruction : ScriptableObject
 
     public bool FixUnityRefrencingBug() //unity has a bug where it does not serealize and desealize correctly fields in a SO that where set at runtime (and not manually)
     {
+#if UNITY_EDITOR
         isAsset = true;
         if (commandAssetsGuids.Count != commands.Count)
             return false;
@@ -50,6 +51,8 @@ public class Instruction : ScriptableObject
             commands[i] = AssetDatabase.LoadAssetAtPath<Command>(assetPath);
             commands[i].isAsset = true;
         }
+        return true;
+#endif
         return true;
     }
 

@@ -1761,7 +1761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ee7b6837435834dbdad39eab7b3d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instructionAssets: []
+  instructionAssets:
+  - {fileID: 11400000, guid: 5390d5f07362cc54bb6c10f470935ce0, type: 2}
 --- !u!114 &651845012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2082,7 +2083,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.63
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

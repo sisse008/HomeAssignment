@@ -26,12 +26,11 @@ public class MoveCommand : Command
         return instance;
     }
 
-    Vector3 destination;
     public override IEnumerator Execute(Robot r)
     {
         float time = 0;
         Vector3 currentPosition = r.transform.position;
-        destination = currentPosition + delta;
+        Vector3 destination = currentPosition + delta;
         if(currentPosition == destination)
             yield break;
         while (time < actionTime)
